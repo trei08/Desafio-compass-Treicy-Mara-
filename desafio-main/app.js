@@ -1,8 +1,8 @@
-// Factory para criar uma nova pessoa
+// Função para criar uma nova pessoa
 function criarPessoa(nome, nascimento, telefone, email) {
   console.log('Criando nova pessoa...');
   return {
-    id: Date.now(), // ID único
+    id: Date.now(), // ID único baseado no timestamp
     nome,
     nascimento,
     telefone,
@@ -23,11 +23,11 @@ function salvarPessoas(pessoas) {
   localStorage.setItem('pessoas', JSON.stringify(pessoas));
 }
 
-// Exibe pessoas na tela
+// Atualiza a lista de pessoas na tela
 function exibirPessoas() {
   console.log('Exibindo pessoas...');
   const lista = document.getElementById('listaPessoas');
-  lista.innerHTML = '';
+  lista.innerHTML = ''; // Limpa a lista
 
   pessoas.forEach(p => {
     const div = document.createElement('div');
@@ -43,15 +43,20 @@ function exibirPessoas() {
   });
 }
 
-// Exclui uma pessoa
+// Exclui uma pessoa da lista
 function excluirPessoa(id) {
   console.log(`Excluindo pessoa com ID: ${id}`);
   pessoas = pessoas.filter(p => p.id !== id);
+  atualizarEExibirPessoas();
+}
+
+// Atualiza e exibe pessoas na tela
+function atualizarEExibirPessoas() {
   salvarPessoas(pessoas);
   exibirPessoas();
 }
 
-// Ao enviar o formulário
+// Ao enviar o formulário de cadastro
 document.getElementById('cadastroForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -62,13 +67,12 @@ document.getElementById('cadastroForm').addEventListener('submit', function(e) {
 
   const novaPessoa = criarPessoa(nome, nascimento, telefone, email);
   pessoas.push(novaPessoa);
-  salvarPessoas(pessoas);
-  exibirPessoas();
+  atualizarEExibirPessoas();
 
-  this.reset(); // limpa o formulário
+  this.reset(); // Limpa o formulário
   console.log('Pessoa cadastrada com sucesso!');
 });
 
-// Inicialização
+// Inicializa a lista de pessoas
 let pessoas = carregarPessoas();
 exibirPessoas();

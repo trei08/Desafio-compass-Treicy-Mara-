@@ -1,37 +1,43 @@
-# Projeto de Cadastro
+# Projeto de Cadastro de Pessoas
 
-**Por:** Treicy Mara de Paula Zambilo
+**Estagiária:** Treicy Mara de Paula Zambilo
 
 ## O que é?
 
-Um sistema simples para cadastrar pessoas. Foi um desafio da Compass UOL AWS.
+Este é um sistema simples para cadastrar pessoas. O projeto foi realizado como parte de um desafio da Compass UOL AWS.
 
-## O que usei?
+## Tecnologias Usadas
 
-- HTML
-- CSS  
-- JavaScript
-- LocalStorage (para salvar no navegador)
+- **HTML**: Para a estrutura da página.
+- **CSS**: Para o design e layout da página.
+- **JavaScript**: Para a lógica de cadastro, listagem e exclusão de pessoas.
+- **LocalStorage**: Para armazenar os dados localmente no navegador.
 
-## Como funciona?
+## Como Funciona?
 
-1. Abra o arquivo index.html
-2. Preencha o formulário
-3. Clique em cadastrar
-4. Os dados ficam salvos no navegador
+1. Abra o arquivo `index.html` em seu navegador.
+2. Preencha os campos do formulário (Nome, Data de Nascimento, Telefone, Email).
+3. Clique no botão "Cadastrar" para adicionar uma pessoa à lista.
+4. A lista de pessoas será exibida abaixo, e você poderá excluir uma pessoa clicando no botão "Excluir".
 
-## O que aprendi?
+## Como Rodar?
 
-- Como usar JavaScript para salvar dados
-- Como fazer um formulário funcionar
-- Como usar o Git/GitHub (ainda estou aprendendo!)
+1. Clone o repositório ou baixe os arquivos.
+2. Abra o arquivo `index.html` diretamente no navegador (não precisa de servidor local).
+3. Preencha o formulário e cadastre as pessoas!
+
+## O que Aprendi?
+
+- Como implementar um CRUD simples (Cadastrar, Exibir e Excluir) usando JavaScript.
+- Como utilizar o **localStorage** para persistir dados no navegador.
+- Melhorei minhas habilidades com **Git e GitHub** (ainda estou aprendendo!).
 
 ## Dificuldades
 
-Tive dificuldade com o GitHub no começo, mas com as videoaulas da AI/R Learning e ajuda do professor da faculdade consegui entender melhor.
+Tive algumas dificuldades iniciais com o GitHub, mas com a ajuda de videoaulas e o suporte do professor consegui resolver.
 
 ## Arquivos
 
-- index.html (página principal)
-- style.css (deixa bonito)
-- script.js (faz funcionar)
+- **index.html**: Página principal do cadastro.
+- **css/style.css**: Estilos para deixar a página mais bonita.
+- **js/script.js**: Código JavaScript que implementa a lógica de cadastro e interação.
