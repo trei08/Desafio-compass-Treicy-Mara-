@@ -31,10 +31,14 @@ Este é um sistema simples para cadastrar pessoas. O projeto foi realizado como 
 - Como implementar um CRUD simples (Cadastrar, Exibir e Excluir) usando JavaScript.
 - Como utilizar o **localStorage** para persistir dados no navegador.
 - Melhorei minhas habilidades com **Git e GitHub** (ainda estou aprendendo!).
+Testes e Melhorias
+A cada nova versão, eu faço testes contínuos para identificar pontos de melhoria e aprimorar a usabilidade do sistema. Acredito que testar é fundamental para garantir que a aplicação seja eficiente e atenda às expectativas do usuário final.
 
-## Dificuldades
 
-Tive algumas dificuldades iniciais com o GitHub, mas com a ajuda de videoaulas e o suporte do professor consegui resolver.
+## Desafios Encontrados     
+
+Durante o desenvolvimento deste projeto, enfrentei algumas dificuldades, principalmente no início, ao tentar entender a estrutura do GitHub e como gerenciar os commits e branches de forma eficiente. No entanto, com a ajuda de materiais de aprendizado e professores, consegui superar essas dificuldades e depois de três versões cada uma delas demonstrando as tentativas, melhorando a cada vez para além de entregar algo como pedido , principalmente evoluir com meus proprios feedbacks e testes para atender melhor as expectativas!
+
 
 ## Arquivos
 
