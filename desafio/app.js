@@ -1,8 +1,7 @@
-// Função para criar uma nova pessoa
-function criarPessoa(nome, nascimento, telefone, email) {
-  console.log('Criando nova pessoa...');
+// Factory para criar objetos Pessoa
+function Pessoa(nome, nascimento, telefone, email) {
   return {
-    id: Date.now(), // ID único baseado no timestamp
+    id: Date.now(), // ID único baseado em timestamp
     nome,
     nascimento,
     telefone,
@@ -10,53 +9,51 @@ function criarPessoa(nome, nascimento, telefone, email) {
   };
 }
 
-// Carrega pessoas do localStorage
-function carregarPessoas() {
-  console.log('Carregando pessoas...');
-  const pessoasSalvas = localStorage.getItem('pessoas');
-  return pessoasSalvas ? JSON.parse(pessoasSalvas) : [];
+// Recupera pessoas do localStorage
+function getPessoas() {
+  const pessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
+  console.log('[DEBUG] Pessoas carregadas:', pessoas);
+  return pessoas;
 }
 
-// Salva lista de pessoas no localStorage
+// Salva pessoas no localStorage
 function salvarPessoas(pessoas) {
-  console.log('Salvando pessoas...');
   localStorage.setItem('pessoas', JSON.stringify(pessoas));
+  console.log('[DEBUG] Pessoas salvas:', pessoas);
 }
 
-// Atualiza a lista de pessoas na tela
-function exibirPessoas() {
-  console.log('Exibindo pessoas...');
-  const lista = document.getElementById('listaPessoas');
-  lista.innerHTML = ''; // Limpa a lista
-
-  pessoas.forEach(p => {
-    const div = document.createElement('div');
-    div.className = 'pessoa';
-    div.innerHTML = `
-      <strong>Nome:</strong> ${p.nome}<br>
-      <strong>Nascimento:</strong> ${p.nascimento}<br>
-      <strong>Telefone:</strong> ${p.telefone}<br>
-      <strong>Email:</strong> ${p.email}<br>
-      <button onclick="excluirPessoa(${p.id})">Excluir</button>
-    `;
-    lista.appendChild(div);
-  });
+// Adiciona pessoa na lista visual
+function renderPessoa(pessoa) {
+  const div = document.createElement('div');
+  div.className = 'pessoa';
+  div.innerHTML = `
+    <strong>Nome:</strong> ${pessoa.nome}<br>
+    <strong>Nascimento:</strong> ${pessoa.nascimento}<br>
+    <strong>Telefone:</strong> ${pessoa.telefone}<br>
+    <strong>Email:</strong> ${pessoa.email}<br>
+    <button onclick="deletarPessoa(${pessoa.id})">Remover</button>
+  `;
+  document.getElementById('listaPessoas').appendChild(div);
 }
 
-// Exclui uma pessoa da lista
-function excluirPessoa(id) {
-  console.log(`Excluindo pessoa com ID: ${id}`);
+// Re-renderiza todas as pessoas
+function renderLista() {
+  const listaDiv = document.getElementById('listaPessoas');
+  listaDiv.innerHTML = ''; // limpa
+  const pessoas = getPessoas();
+  pessoas.forEach(renderPessoa);
+}
+
+// Remove pessoa do localStorage e atualiza a lista
+function deletarPessoa(id) {
+  let pessoas = getPessoas();
   pessoas = pessoas.filter(p => p.id !== id);
-  atualizarEExibirPessoas();
-}
-
-// Atualiza e exibe pessoas na tela
-function atualizarEExibirPessoas() {
   salvarPessoas(pessoas);
-  exibirPessoas();
+  renderLista();
+  console.log(`[DEBUG] Pessoa com ID ${id} removida.`);
 }
 
-// Ao enviar o formulário de cadastro
+// Lógica de cadastro
 document.getElementById('cadastroForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -65,14 +62,16 @@ document.getElementById('cadastroForm').addEventListener('submit', function(e) {
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
 
-  const novaPessoa = criarPessoa(nome, nascimento, telefone, email);
-  pessoas.push(novaPessoa);
-  atualizarEExibirPessoas();
+  const pessoa = Pessoa(nome, nascimento, telefone, email);
+  const pessoas = getPessoas();
+  pessoas.push(pessoa);
+  salvarPessoas(pessoas);
 
-  this.reset(); // Limpa o formulário
-  console.log('Pessoa cadastrada com sucesso!');
+  renderLista();
+  this.reset();
+
+  console.log('[DEBUG] Pessoa cadastrada:', pessoa);
 });
 
-// Inicializa a lista de pessoas
-let pessoas = carregarPessoas();
-exibirPessoas();
+// Carrega dados ao iniciar
+window.onload = renderLista;
